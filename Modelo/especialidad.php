@@ -46,7 +46,8 @@ class Especialidad{
 
 //    public static function crear($nom_esp,$des_esp,$fec_reg_esp,$fec_mod_esp,$id_usu_reg_esp,$id_usu_mod_esp,$est_esp){
     public static function crear($nom_esp,$des_esp,$est_esp){
-        echo " idper". $_SESSION["id_per"];
+       // echo " idper". $_SESSION["id_per"];
+       // echo "idusu". $_SESSION["id_usu"];
         $conexionBD=BD::crearInstancia();       
          $sql=$conexionBD->prepare("INSERT INTO especialidad(nom_esp, des_esp, id_usu_reg_esp, est_esp) VALUES (?,?,?,?)");
         $sql->execute(array($nom_esp,$des_esp,$_SESSION["id_usu"],$est_esp));

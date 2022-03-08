@@ -16,7 +16,7 @@
             <th>Fecha de Nacimiento</th>
             <th>Género</th>
             <th>Rol de usuario</th>
-            <th>Estado</th>
+            <th>Estado</th>  <!-- -->
             <th>Contraseña</th>
             <th>Acciones</th>
         </tr>        
@@ -60,7 +60,7 @@
                       if($usuario->est_per==2){
                           echo "Desactivado";
                       } 
-                ?></td>
+                ?></td>  <!-- -->
             
 
             <td><?php echo $usuario->pas_per; ?></td>

@@ -11,9 +11,9 @@ $pas    =$_POST["contrasena"];
 
   session_start();
 
-
 $conexionBD=BD::crearInstancia();
-$sql=$conexionBD->query("SELECT * FROM usuario WHERE nom_usu='$cedula' AND  pas_usu= '$pas'");        
+$sql=$conexionBD->query("SELECT * FROM usuario WHERE nom_usu='$cedula' AND  pas_usu= '$pas'");  
+$sql=$conexionBD->query(" SELECT * FROM persona WHERE ced_per='$cedula' ");      
 foreach($sql->fetchAll() as $medico) {
   
     /*if($medico['rol_usu']=="Administrador" )//1
@@ -29,17 +29,26 @@ foreach($sql->fetchAll() as $medico) {
     $_SESSION["nom_usu"] =$medico['nom_usu'];
     $_SESSION["id_per"] =$medico['id_per'];
 
+    $_SESSION["nom_per"] =$medico['nom_per'];
+    $_SESSION["ape_per"] =$medico['ape_per'];
+
     if($medico['tip_usu']=="1" )//1Administrador
     {
        echo "<script> window.location='../index.php' </script>";
     }
-    if($medico['tip_usu']=="2" )
+    if($medico['tip_usu']=="2" ) //2Medicos
     {
       echo "<script> window.location='../indexmedico.php' </script>";
     }
-    if($medico['tip_usu']=="4" )
+    if($medico['tip_usu']=="3" ) //3Secretaria
+    {
+      echo "<script> window.location='../indexsecretaria.php' </script>";
+    
+    }
+    if($medico['tip_usu']=="4" ) //4 Pacientes
     {
       echo "<script> window.location='../indexpaciente.php' </script>";
+    
     }
     
 

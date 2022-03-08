@@ -11,6 +11,7 @@ class ControladorUsuarios{
         include_once("./Vista/usuarios/inicio.php");
 
     } 
+
     public function crear(){
         if($_POST){
          print_r($_POST);
@@ -55,6 +56,33 @@ class ControladorUsuarios{
         $usuarios=(Usuarios::buscar($id_per));
        
         include_once("./Vista/usuarios/editar.php");
+
+        
+    }
+
+    public function editar1(){           
+        if($_POST){     
+            $id_per=$_POST['id_per'];           
+            $cedula=$_POST['cedula'];
+            $apellido=$_POST['apellido'];
+            $nombre=$_POST['nombre'];
+            $correo=$_POST['correo'];
+            $telefono=$_POST['telefono'];
+            $direccion=$_POST['direccion'];
+            $ciudad=$_POST['ciudad'];
+            $fecha=$_POST['fecha'];
+            $genero=$_POST['genero'];
+            $tipusu=$_POST['rol'];
+            $estper=$_POST['estado'];
+            $pas=$_POST['pas'];
+            Usuarios::editar($id_per,$cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas);          
+            header("Location:indexmedico.php");
+        }
+        $id_per=$_GET['id_per'];
+       //(print_r(Medicos::buscar($id_per));        
+        $usuarios=(Usuarios::buscar($id_per));
+       
+        include_once("./Vista/usuarios/editar1.php");
 
         
     }

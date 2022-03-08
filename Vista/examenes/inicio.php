@@ -4,7 +4,7 @@
 
 <table class="table table-bordered">
     <thead>
-    <tr><h1 align="center" class="display-6">Doctor ##########</h1></tr>
+    <tr><h1 align="center" class="display-6">Doctor: <?php echo $_SESSION['nom_per'];?><?php echo "     ";?><?php echo $_SESSION['ape_per'];?></h1></tr>
     <tr><h1 align="center" class="display-7">Especialista en: ##########</h1></tr>
     <tr><h1 align="center" class="display-6">Solicitud de exámenes</h1></tr>
     <tr><h1 align="left" class="col-9"><h3>Nombre del Paciente:</h3></h1></tr>

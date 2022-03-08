@@ -43,15 +43,9 @@ class ControladorCatalogoM{
         }
         $id_cat=$_GET['id_cat'];
        //(print_r(Medicos::buscar($id_per));        
-        $catalogos=(CatalogoM::buscar($id_cat));
-        //if($_POST){
-          //  print_r($_POST);
-        //}
-        
-        //$ced_per=$_GET['ced_per'];
+        $catalogos=(CatalogoM::buscar($id_cat));      
     
         include_once("./Vista/catalogoM/editar.php");
-
         
     }
 

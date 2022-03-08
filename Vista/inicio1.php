@@ -12,7 +12,7 @@
 </div>
  
 <tr><h1 align="center" class="display-6">Hospital Básico de la Zona El Oro</h1></tr>
-<tr><h1 align="center" class="display-6">Dr:</h1></tr>
+<tr><h1 align="center" class="display-6">Dr:<?php echo $_SESSION['nom_per'];?><?php echo "     ";?><?php echo $_SESSION['ape_per'];?></h1></tr>
 <tr><h1 align="center" class="display-6">Receta Médica</h1></tr>
 <th></th>   
     <tr align="center">            

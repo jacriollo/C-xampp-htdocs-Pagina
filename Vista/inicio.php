@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -22,6 +23,55 @@
     </style>   
   </head>
   <body>
+      
+<script>
+function validar2(e){
+tecla_codigo = (document.all) ? e.keyCode : e.which;
+if(tecla_codigo==8)return true;
+patron =/[0-9.]/;
+tecla_valor = String.fromCharCode(tecla_codigo);
+return patron.test(tecla_valor);
+}
+
+function check_cedula( form ){
+  var cedula = form.cedula.value;
+  array = cedula.split( "" );
+  num = array.length;
+  if ( num == 10 ){
+    total = 0;
+    digito = (array[9]*1);
+    for( i=0; i < (num-1); i++ ){
+      mult = 0;
+      if ( ( i%2 ) != 0 ) {
+        total = total + ( array[i] * 1 );
+      }else{
+        mult = array[i] * 2;
+        if ( mult > 9 )
+          total = total + ( mult - 9 );
+        else
+          total = total + mult;
+      }
+    }
+    decena = total / 10;
+    decena = Math.floor( decena );
+    decena = ( decena + 1 ) * 10;
+    final = ( decena - total );
+    if ( ( final == 10 && digito == 0 ) || ( final == digito ) ) { 
+      return true;
+    }else{
+      alert( "La cedula NO es valida!!!" );
+      return false;
+    }
+  }else{
+    alert("La cédula ingresada no es valida");
+    return false;
+  }
+}
+
+</script>
+
+
+
   <div class="container-fluid bg-inverse fixed-top">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,17 +106,35 @@
 
       <form id="form_ingreso" name="form_ingreso" method="POST" action="ingresar_adm.php">
    <table width="293"  border="0" align="center">
-    
+      
+   <?php 
+     /* if(isset($_POST['cedula'])){
+          $cedula=$_POST['cedula'];
+          $contrasena=$_POST['contrasena'];
+          $correo=$_POST['correo'];
+          $campo=array();
+          if($cedula==""){
+            array_push($campo, "El campo cédula no puede esta vacio");
+          }
+          if($contrasena=="" || strlen($contrasena)<10){
+            array_push($campo,"El campo password no puede estar vacio ni tener menos de 10 caracteres");
+          }
+          if($correo=="" || strpos($correo,"@")===false){
+            array_push($campo,"Ingresa un correo válido");
+
+          }
+      }*/
+   ?>
     <tr>
       <td width="124"><div align="right" class="Estilo2 Estilo4">Cédula: </div></td>
       <td width="144"><label>
-      <input name="cedula" type="text" id="cedula" onkeyup="this.value=this.value.replace();"/>
+      <input name="cedula" type="text" id="cedula" onkeyup="this.value=this.value.replace();" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
       </label></td>
     </tr>
     <tr>
       <td><div align="right" class="Estilo3">Contrase&ntilde;a:</div></td>
       <td><label>
-          <input name="contrasena" type="password" id="contrasena"  />
+          <input name="contrasena" type="password" id="contrasena"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
           <!--onKeyUp="this.value=this.value.replace(/[^0-9]/, '');"-->
       </label></td>
     </tr>
@@ -77,7 +145,7 @@
       <td colspan="2"><div align="center" >
         <label>
         <div align="right">
-          <input type="submit" name="ingresar" value="ingresar"/>
+          <input type="submit" name="ingresar" value="ingresar" onClick="return check_cedula(this.form)"/>
         </div>
         </label></td>  
     </tr>    
@@ -86,8 +154,8 @@
 
   
     <div align="center"> </div>
-      <div id="link"><a href="pacientes.php">Creaaaar una cuenta</a></div>
-      </div>
+      <div id="link"><a href="pacientes.php">CREAR UNA CUENTA</a></div> 
+      </div>  
 
       <div class="container">
       <h2>Especialidades</h2>
@@ -165,5 +233,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
+ 
+ 
   </body>
 </html>

@@ -33,6 +33,22 @@
       </nav>
   </div>
 <!-- Menú de navegación -->
+
+
+
+
+
+<nav class="navbar navbar-toggeleable-md navbar-inverse bg-info">
+            <div  class="nav navbar-nav mx-auto">
+            <h1  class="text-white" class="display-6">ÁREA MÉDICA</h1>              
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand navbar-light bg-light">
+            <div  class="nav navbar-nav mr-auto">
+                <h1 class="display-6">Bienvenido:    <?php session_start(); echo $_SESSION['nom_per'];?><?php echo "     ";?><?php echo $_SESSION['ape_per'];?></h1>               
+            </div>
+        </nav>
     <div class="container-fluid bg-inverse fixed-top">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">    
         <a class="nav-item nav-link active" href="inicio.php">Inicio</a>

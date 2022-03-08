@@ -2,62 +2,85 @@
 <?php
 include("./controlador/conexion.php");
 class Registrar{
-    
-    public $ced_per;
-    public $ape_per;
-    public $nom_per;   
-    public $tip_usu;
+    public $nom_esp;
+    public $med;   
+    public $est_esp;
     public $id_usu; 
+    public $id_esp;
 
-    public function __construct($ced_per,$ape_per,$nom_per,$tip_usu,$id_usu){
-        $this->ced_per=$ced_per;
-        $this->ape_per=$ape_per;
-        $this->nom_per=$nom_per;       
-        $this->tip_usu=$tip_usu;     
-        $this->pas_per=$id_usu;
+    public function __construct($id_usu, $id_esp,$est_esp,$med,$nom_esp){
+        $this->id_usu=$id_usu;
+        $this->id_esp=$id_esp;
+        $this->med=$med;       
+        $this->nom_esp=$nom_esp;     
+        $this->est_esp=$est_esp;
     }
 
     public static function consultar(){        
         $listaregistrar=[];
         $conexionBD=BD::crearInstancia();
-        $sql=$conexionBD->query("SELECT ced_per, ape_per, nom_per, U.tip_usu,U.id_usu FROM persona P, usuario U WHERE P.id_per= U.id_per and U.tip_usu='2'");        
+        $sql=$conexionBD->query("SELECT  me.id_usu, me.id_esp, me.est_med_esp AS est, concat(p.ape_per, ' ', p.nom_per) AS med, e.nom_esp 
+        FROM medico_especialidad me 
+        INNER JOIN especialidad e ON e.id_esp = me.id_esp
+        INNER JOIN usuario u ON u.id_usu = me.id_usu
+        INNER JOIN persona p ON p.id_per =  u.id_per");        
         foreach($sql->fetchAll() as $registrar) {
-           $listaregistrar[]= new Registrar ($registrar['ced_per'],$registrar['ape_per'],$registrar['nom_per'],$registrar['tip_usu'],$registrar['id_usu']); 
+           $listaregistrar[]= new Registrar ($registrar['id_usu'],$registrar['id_esp'],$registrar['est'],$registrar['med'],$registrar['nom_esp'] ); 
         
         }
         return $listaregistrar;
     }
 
-    public static function buscar($id_usu){
+    public static function crear($id_usu,$id_esp,$est_esp){       
+        $conexionBD=BD::crearInstancia();       
+        $sql=$conexionBD->prepare("INSERT INTO medico_especialidad(id_usu, id_esp, est_med_esp) VALUES (?,?,?)");
+        $sql->execute(array($id_usu, $id_esp, $est_esp));
+    }
+   
+    public static function editar($id_usu, $id_esp, $medico,$especialidad,$estado){
         $conexionBD=BD::crearInstancia();
-        $sql=$conexionBD->prepare("SELECT ced_per, ape_per, nom_per, U.tip_usu,U.id_usu FROM persona P, usuario U WHERE P.id_per= U.id_per and U.tip_usu='2'");
-        $sql->execute(array($id_usu));
-        $registrar=$sql->fetch();
-        return new Registrar($registrar['ced_per'],$registrar['ape_per'],$registrar['nom_per'],$registrar['tip_usu'],$registrar['id_usu']);
+        $sql=$conexionBD->prepare("UPDATE medico_especialidad SET id_usu=?, id_esp=?, est_med_esp=? WHERE id_usu=? AND  id_esp=?");
+        $sql->execute(array( $medico,$especialidad,$estado, $id_usu, $id_esp));
     }
 
-   /* public static function consultar(){        
+    public static function buscar($id_usu, $id_esp){
+        $conexionBD=BD::crearInstancia();
+        $sql=$conexionBD->prepare("SELECT id_usu, id_esp, est_med_esp AS est FROM medico_especialidad WHERE id_usu =? AND id_esp=?");
+        $sql->execute(array($id_usu, $id_esp));
+        $registrar=$sql->fetch();
+        return new Registrar($registrar['id_usu'],$registrar['id_esp'],$registrar['est'], null, null);
+    }  
+    
+    public static function borrar($id_usu, $id_esp){
+        $conexionBD=BD::crearInstancia();
+        $sql=$conexionBD->prepare(" DELETE FROM medico_especialidad WHERE id_usu=? AND  id_esp=? ");
+        $sql->execute(array($id_usu, $id_esp));
+
+    }
+
+    public static function consultarUsuarioRol($tipo){             
         $listaregistrar=[];
         $conexionBD=BD::crearInstancia();
-        $sql=$conexionBD->query("SELECT * FROM persona");        
+        $sql=$conexionBD->prepare("SELECT u.id_usu, u.id_per, concat(p.ape_per, ' ', p.nom_per) AS med  FROM complexivo.usuario u INNER JOIN complexivo.persona p ON p.id_per =  u.id_per WHERE u.tip_usu = ? AND u.est_usu =? AND u.est_usu =? ;");                
+        $sql->execute(array($tipo, 1, 1));      
         foreach($sql->fetchAll() as $registrar) {
-            $listaregistrar[]= new Registrar ($registrar['id_per'],$registrar['ced_per'],$registrar['ape_per'],$registrar['nom_per'],$registrar['correo_per'],$registrar['tel_per'],$registrar['dir_per'],$registrar['ciu_rec_per'],$registrar['fec_nac_per'],$registrar['gen_per'],$registrar['tip_usu'],$registrar['est_per'],$registrar['pas_per']); 
-
+           $listaregistrar[]=  array ('id_usu' => $registrar['id_usu'], 'med' => $registrar['med']); 
+        
         }
         return $listaregistrar;
-    }*/
+    } 
 
- 
+    public static function consultarEspecialidad($estado){                       
+          $listaespecialidad=[];
+         $conexionBD=BD::crearInstancia();
+          $sql=$conexionBD->prepare("SELECT * FROM especialidad WHERE est_esp=? ");
+          $sql->execute(array($estado));      
+          foreach($sql->fetchAll() as $especialidad) {         ;
+              $listaespecialidad[]= array ('id_esp' => $especialidad['id_esp'], 'nom_esp' =>  $especialidad['nom_esp']); 
+          }
+          return $listaespecialidad;
+      }
 
-
-
-    public static function editar($id_per, $cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas){
-        //echo  $id_per;
-        $conexionBD=BD::crearInstancia();
-        $sql=$conexionBD->prepare("UPDATE persona SET ced_per=?, ape_per=?, nom_per=?, correo_per=?, tel_per=?, dir_per=?, ciu_rec_per=?, fec_nac_per=?, gen_per=?, tip_usu=?, est_per=?, pas_per=? WHERE id_per=? ");
-        $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas,$id_per));
-        //header("Location:./?controlador=medicos&accion=editar");
-    }
 }
 
 ?>

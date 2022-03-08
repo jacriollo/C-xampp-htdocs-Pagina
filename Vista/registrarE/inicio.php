@@ -5,30 +5,29 @@
     <thead>
     <tr><h1 align="center" class="display-6">Módulo Registrar Especialidad a Médicos</h1></tr>
         <tr>         
-            <th>Cédula</th>
-            <th>Apellido</th>
-            <th>Nombre</th>    
-            <th>Rol</th>                         
+            <th>Médico</th>
+            <th>Especialidad</th>
+            <th>Estado</th>                       
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
     <?php foreach($registrar as $registra){?>
-        <tr>  
-                                     
-            <td><?php echo $registra->ced_per; ?></td>
-            <td><?php echo $registra->ape_per; ?></td>
-            <td><?php echo $registra->nom_per; ?></td>           
-            <td><?php if($registra->tip_usu){                
-                        echo"Médico";
-                      }
-                ?></td> 
-                
-            <td>
+        <tr>                         
+            <td><?php echo $registra->med; ?></td> 
+            <td><?php echo $registra->nom_esp; ?></td>           
+            <td><?php
+                if($registra->est_esp==1){
+                    echo "Activado";
+                }else { 
+                    echo "Desactivado";
+                } 
+                ?></td>
+                 <td>
             <div class="btn-group" role="group" aria-label="">
-                <a href="?controlador=registrarE&accion=editar&id_usu=<?php echo $registra->id_usu; ?>" class="btn btn-success">Registrar</a>
-                <!--<a href="?controlador=medicos&accion=editar&id_per=<?php// echo $registra->id_per; ?>" class="btn btn-info">Editar</a>--> 
-               <!--<a href="?controlador=medicos&accion=borrar&id_per=<?php //echo $registra->id_per; ?>" class="btn btn-danger">Borrar</a>-->                
+                <a href="?controlador=registrarE&accion=crear" class="btn btn-success">Crear</a>
+                <a href="?controlador=registrarE&accion=editar&id_usu=<?php echo $registra->id_usu; ?>&id_esp=<?php echo $registra->id_esp; ?>" class="btn btn-info">Editar</a>
+                <a href="?controlador=registrarE&accion=borrar&id_usu=<?php echo $registra->id_usu; ?>&id_esp=<?php echo $registra->id_esp; ?>" class="btn btn-danger">Borrar</a>                 
             </div>    
            </td>
         </tr>           

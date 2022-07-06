@@ -67,18 +67,21 @@ function check_cedula( form ){
 }
 
 </script>
-
-<div  style="width:600px" class="card">
-    <div align="center"  class="card-header">
+<tr><h1>    </h1></tr>
+<tr><h1>    </h1></tr> <!--dar espacio entre el encabezado y el formulario-->
+<div  style="width:600px" class="card" >
+    <div align="center"   class="bg-info" >
         AGREGAR USUARIOS
     </div>
+    <?php echo $mensaje?>
+    
     <div class="card-body">
         <form class="row g-3 needs-validation" novalidate action=""  method="post">
 
     <div class="mb-3">
       <label for="cedula" class="form-label">Cédula:</label>
       <input type="text"
-      class="form-control" name="cedula" id="cedula" style="width:400px" aria-describedby="helpId" placeholder="Cédula del usuario" Required> 
+      class="form-control" name="cedula" id="cedula" onkeyup="this.value=this.value.replace(/[^0-9]/, '');" size="11" maxlength="10" style="width:400px" aria-describedby="helpId" placeholder="Cédula del usuario" Required> 
       <!--mensaje para validacion -->     
      <div class="invalid-feedback">Completar los datos.</div>      
     </div>    
@@ -132,8 +135,8 @@ function check_cedula( form ){
 
     <div class="mb-3">
       <label for="fecha" class="form-label">Fecha de nacimiento:</label>
-      <input type="text"
-      class="form-control" name="fecha" id="fecha" style="width:400px" aria-describedby="helpId" placeholder="Fecha de nacimiento del usuario" Required>  
+      <input 
+      class="form-control" type="date" name="fecha" id="fecha" value="01-01-2020" min="1995-01-01" max="2020-01-01" style="width:400px" aria-describedby="helpId" placeholder="Fecha de nacimiento del usuario" Required>  
       <!--mensaje para validacion -->     
      <div class="invalid-feedback">Completar los datos.</div>     
     </div>
@@ -151,10 +154,13 @@ function check_cedula( form ){
     <div class="form-group">
           <label for="rol">Rol</label>
           <select name="rol" id="rol" style="width:400px" class="custom-select" Required>
-              <option value ="1">Administrador</option>
-              <option value ="2">Médico</option>
-              <option value ="3">Secretaria</option>  
-              <option value ="4">Paciente</option>                                                      
+              <!--<option value ="1">Administrador</option>-->
+              <option value ="2">Médico</option>              
+              <option value ="3">Secretaria</option>              
+              <!--<option value ="4">Técnico 1</option>
+              <option value ="5">Técncio 2</option>
+              <option value ="6">Auditor</option>-->
+              <!--<option value ="4">Paciente</option>-->                                                       
           </select>
           <!--mensaje para validacion -->     
      <div class="invalid-feedback">Completar los datos.</div>     
@@ -179,6 +185,7 @@ function check_cedula( form ){
 
     <div align="center" class="card-header">
     <input  name="" id="" class="btn btn-success" type="submit" value="Agregar Usuarios" onClick="return check_cedula(this.form)"; >
+    
     </div>  
 
         </form>

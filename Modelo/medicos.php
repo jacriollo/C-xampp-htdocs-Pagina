@@ -32,6 +32,20 @@ class Medicos{
         $this->est_per=$est_per;
         $this->pas_per=$pas_per;
     }
+
+    public static function consultar(){     
+        $per= $_SESSION['id_per'];      
+        $listamedicos=[];
+        $conexionBD=BD::crearInstancia();
+        $sql=$conexionBD->query("SELECT * FROM persona  WHERE id_per=$per");        
+        foreach($sql->fetchAll() as $medico) {
+            $listamedicos[]= new Medicos ($medico['id_per'],$medico['ced_per'],$medico['ape_per'],$medico['nom_per'],$medico['correo_per'],$medico['tel_per'],$medico['dir_per'],$medico['ciu_rec_per'],$medico['fec_nac_per'],$medico['gen_per'],$medico['tip_usu'],$medico['est_per'],$medico['pas_per']); 
+
+        }
+        return $listamedicos;
+    }
+
+    /*
     public static function consultar(){        
         $listamedicos=[];
         $conexionBD=BD::crearInstancia();
@@ -42,7 +56,7 @@ class Medicos{
         }
         return $listamedicos;
     }
-
+    */
     public static function crear($cedula, $apellido, $nombre, $correo, $telefono, $direccion, $ciudad, $fecha_nacimiento, $genero, $tipusu, $estper, $pas) {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO persona(ced_per, ape_per, nom_per, correo_per, tel_per, dir_per, ciu_rec_per, fec_nac_per, gen_per, tip_usu, est_per, pas_per) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -53,6 +67,7 @@ class Medicos{
         Medicos::crearusuarios($id, $cedula, $pas, $tipusu, $estper);
        }
     }
+
     public static function crearusuarios($id_per, $cedula, $pas, $tipusu, $estper) {
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO usuario(id_per, nom_usu, pas_per, tip_usu, est_usu) VALUES (?,?,?,?,?)");
@@ -103,6 +118,19 @@ class Medicos{
         $sql=$conexionBD->prepare("UPDATE persona SET ced_per=?, ape_per=?, nom_per=?, correo_per=?, tel_per=?, dir_per=?, ciu_rec_per=?, fec_nac_per=?, gen_per=?, tip_usu=?, est_per=?, pas_per=? WHERE id_per=? ");
         $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas,$id_per));
         //header("Location:./?controlador=medicos&accion=editar");
+       // Pacientes::modificarusuarios($id_per, $cedula, $pas, $tipusu, $estper);
     }
+
+    /*
+    public static function editar($id_per, $cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas){
+        // echo  $pas;
+         $conexionBD=BD::crearInstancia();
+         $sql=$conexionBD->prepare("UPDATE persona SET ced_per=?, ape_per=?, nom_per=?, correo_per=?, tel_per=?, dir_per=?, ciu_rec_per=?, fec_nac_per=?, gen_per=?, tip_usu=?, est_per=?, pas_per=? WHERE id_per=? ");
+         $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas,$id_per));
+        //echo $id = $conexionBD->lastInsertId();
+        // if($id > 0){            
+         Pacientes::modificarusuarios($id_per, $cedula, $pas, $tipusu, $estper);
+        // }*/
+         
 }
 ?>

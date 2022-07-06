@@ -67,9 +67,9 @@ function check_cedula( form ){
 }
 
 </script>
-
+<tr><h1>    </h1></tr>
 <div style="width:600px" class="card">
-    <div align="center" class="card-header">
+    <div align="center"  class="bg-info">
         MODIFICAR USUARIOS
     </div>
     <div class="card-body">
@@ -83,7 +83,7 @@ function check_cedula( form ){
     <div class="mb-3">
       <label for="cedula" class="form-label">Cédula:</label>
       <input type="text"
-      class="form-control" value="<?php echo $usuarios->ced_per?>" name="cedula" id="cedula" style="width:400px" aria-describedby="helpId" placeholder="Cédula del médico" Required>  
+      class="form-control" value="<?php echo $usuarios->ced_per?>" name="cedula" id="cedula" onkeyup="this.value=this.value.replace(/[^0-9]/, '');" size="11" maxlength="10"  style="width:400px" aria-describedby="helpId" placeholder="Cédula del médico" Required>  
       <!--mensaje para validacion -->     
      <div class="invalid-feedback">Completar los datos.</div> 
     </div>    
@@ -137,8 +137,8 @@ function check_cedula( form ){
 
     <div class="mb-3">
       <label for="fecha" class="form-label">Fecha de nacimiento:</label>
-      <input type="text"
-      class="form-control" value="<?php echo $usuarios->fec_nac_per?>" name="fecha" id="fecha" style="width:400px" aria-describedby="helpId" placeholder="Fecha de nacimiento del médico" Required>  
+      <input type="date"
+      class="form-control" value="<?php echo $usuarios->fec_nac_per?>" min="1995-01-01" max="2020-01-01" name="fecha" id="fecha" style="width:400px" aria-describedby="helpId" placeholder="Fecha de nacimiento del médico" Required>  
       <!--mensaje para validacion -->     
      <div class="invalid-feedback">Completar los datos.</div> 
     </div>
@@ -220,8 +220,8 @@ function check_cedula( form ){
     <!--<div class="mb-3">
       <label for="pas" class="form-label">Contraseña:</label>
       <input type="text"
-      class="form-control" value="<?php// echo $usuarios->pas_per?>" name="pas" id="pas" aria-describedby="helpId" placeholder="Contraseña">  
-    </div>-->
+      class="form-control" value="<?php // echo $usuarios->pas_per?>" name="pas" id="pas" aria-describedby="helpId" placeholder="Contraseña">  
+    </div>--> 
 
     <div align="center" class="card-header">
     <input  name="submit" id="" class="btn btn-success" type="submit" value="Modificar Usuarios" onClick="return check_cedula(this.form)";>

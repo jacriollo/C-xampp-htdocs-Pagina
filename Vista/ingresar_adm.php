@@ -13,7 +13,9 @@ $pas    =$_POST["contrasena"];
 
 $conexionBD=BD::crearInstancia();
 $sql=$conexionBD->query("SELECT * FROM usuario WHERE nom_usu='$cedula' AND  pas_usu= '$pas'");  
-$sql=$conexionBD->query(" SELECT * FROM persona WHERE ced_per='$cedula' ");      
+$sql=$conexionBD->query(" SELECT * FROM persona WHERE ced_per='$cedula' "); 
+
+//$sql=$conexionBD->query(" SELECT * FROM especialidad WHERE ced_per='$cedula' ");     
 foreach($sql->fetchAll() as $medico) {
   
     /*if($medico['rol_usu']=="Administrador" )//1

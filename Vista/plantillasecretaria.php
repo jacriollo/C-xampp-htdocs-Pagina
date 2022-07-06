@@ -10,18 +10,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
   
-    <!--libreria jquery-->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- js para personalizar -->
-    <script src="js/app.js"></script>
-    <!--bootstrap css CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--css Date Picker-->
-    <link rel="stylesheet" href="libs/css/bootstrap-datepicker.standalone.css">
    
+    
+    <!--libreria jquery-->
+    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
+     <!--js para personalizar -->
+    <!--<script src="js/app.js"></script>-->
+    <!--bootstrap css CDN -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--css Date Picker-->
+    <!--<link rel="stylesheet" href="libs/css/bootstrap-datepicker.standalone.css">-->
+   
+
+
+    <!--<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">-->
+    <!--<script src="js/bootstrap-datetimepicker.min.js"></script>-->
+
     </head>
   <body>
-
+  <!--<input size="16" type="text" class="form-control" id="datetime" readonly>-->
 
 <!--<nav class="navbar navbar-toggeleable-md navbar-inverse bg-info">
             <div  class="nav navbar-nav mx-auto">
@@ -71,9 +78,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--Obligatorio que la libreria datepicker este en el footer justo despues de los js de bootstrap para no causar conflicto-->
-    <script src="libs/js/bootstrap-datepicker.min.js"></script>
-    <script src="libs/locales/bootstrap-datepicker.es.min.js"></script>
-
+    <script src="libreria/lbs/js/bootstrap-datepicker.min.js"></script>
+    <script src="libreria/lbs/locales/bootstrap-datepicker.es.min.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

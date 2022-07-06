@@ -23,7 +23,7 @@
     </style>   
   </head>
   <body>
-      
+  
 <script>
 function validar2(e){
 tecla_codigo = (document.all) ? e.keyCode : e.which;
@@ -35,6 +35,7 @@ return patron.test(tecla_valor);
 
 function check_cedula( form ){
   var cedula = form.cedula.value;
+  var contrasena = form.contrasena.value;
   array = cedula.split( "" );
   num = array.length;
   if ( num == 10 ){
@@ -72,7 +73,7 @@ function check_cedula( form ){
 
 
 
-  <div class="container-fluid bg-inverse fixed-top">
+   <!--<div class="container-fluid bg-inverse fixed-top">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
@@ -80,18 +81,20 @@ function check_cedula( form ){
           <a class="navbar-brand" href="#">            
                     Hospital Básico de la Zona El Oro
           </a>              
-          <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto text-center">
               <a class="nav-item nav-link active" href="#">Inicio</a>
             
             </div>
-          </div>-->
+          </div>
       </nav>
-    </div>
+    </div>-->
 <!-- Menú de navegación -->
     <div class="container-fluid bg-inverse fixed-top">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
-    
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+          </button>
         <!--<a class="nav-item nav-link active" href="?controlador=paginas&accion=inicio">Inicio</a>-->                 
       </nav>
     </div>
@@ -128,14 +131,16 @@ function check_cedula( form ){
     <tr>
       <td width="124"><div align="right" class="Estilo2 Estilo4">Cédula: </div></td>
       <td width="144"><label>
-      <input name="cedula" type="text" id="cedula" onkeyup="this.value=this.value.replace();" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-      </label></td>
+      <input name="cedula" type="text" id="cedula" onkeyup="this.value=this.value.replace();" onkeyup="this.value=this.value.replace(/[^0-9]/, '');" size="20" maxlength="10" />
+        
+    </label></td>
+   
     </tr>
     <tr>
       <td><div align="right" class="Estilo3">Contrase&ntilde;a:</div></td>
       <td><label>
-          <input name="contrasena" type="password" id="contrasena"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-          <!--onKeyUp="this.value=this.value.replace(/[^0-9]/, '');"-->
+          <input name="contrasena" type="password" id="contrasena"  onkeyup="this.value=this.value.replace();" onkeyup="this.value=this.value.replace(/[^0-9]/, '');" size="20" maxlength="10" />
+          
       </label></td>
     </tr>
     <tr>
@@ -154,7 +159,7 @@ function check_cedula( form ){
 
   
     <div align="center"> </div>
-      <div id="link"><a href="pacientes.php">CREAR UNA CUENTA</a></div> 
+      <div id="link"><a class="text-white" href="pacientes.php">CREAR UNA CUENTA</a></div> 
       </div>  
 
       <div class="container">
@@ -234,6 +239,9 @@ function check_cedula( form ){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
  
+  
+  
+                   
  
   </body>
 </html>

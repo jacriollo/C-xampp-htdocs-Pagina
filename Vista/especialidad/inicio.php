@@ -4,14 +4,14 @@
     <thead>
     <tr><h1 align="center" class="display-6">Módulo Especialidad</h1></tr>
         <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>  
-            <th>Usuario/registro</th>          
-            <th>F.Registro</th>
-            <th>Usuario/modificó</th>
-            <th>F.Modificación</th>
-            <th>Estado</th> 
-            <th>Acciones</th>           
+            <th><h5 align ="center">Nombre</h5></th>
+            <th><h5 align ="center">Descripción</h5></th>  
+            <th><h5 align ="center">Usuario/registro</h5></th>          
+            <th><h5 align ="center">Fecha.Registro</h5></th>
+            <th><h5 align ="center">Usuario/modificó</h5></th>
+            <th><h5 align ="center">F.Modificación</h5></th>
+            <th><h5 align ="center">Estado</h5></th> 
+            <th><h5 align ="center">Acciones</h5></th>           
         </tr>
     </thead>
     <tbody>
@@ -52,12 +52,14 @@
                 ?></td>
             <td>
             <div class="btn-group" role="group" aria-label="">
-                <a href="?controlador=especialidad&accion=crear&id_esp=<?php echo $especialida->id_esp; ?>" class="btn btn-success">Crear</a>
+            
                 <a href="?controlador=especialidad&accion=editar&id_esp=<?php echo $especialida->id_esp; ?>" class="btn btn-info">Editar</a>
                 <a href="?controlador=especialidad&accion=borrar&id_esp=<?php echo $especialida->id_esp; ?>" class="btn btn-danger">Borrar</a>                
-            </div>    
-           </td>
-        </tr>           
+            </div>             
+           </td>          
+        </tr>  
+                
         <?php }?>
+        <a style="float: right;" href="?controlador=especialidad&accion=crear&id_esp=<?php echo $especialida->id_esp; ?>" class="btn btn-primary">Crear</a>
     </tbody>
 </table>

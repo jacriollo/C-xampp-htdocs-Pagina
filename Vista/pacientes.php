@@ -92,12 +92,12 @@ function check_cedula( form ){
         REGISTRAR PACIENTES
     </div>
     <div class="card-body">
-        <form class="row g-3 needs-validation" novalidate action=""  method="post" action="pacientes_adm.php"> <!--inicio.php-->
+        <form class="row g-3 needs-validation" novalidate method="post" action="pacientes_adm.php"> 
 
     <div class="mb-3" align="center">
       <label for="cedula" class="form-label">Cédula:</label>
       <input type="num"
-      class="form-control" name="cedula" id="cedula" style="width:300px" aria-describedby="helpId" placeholder="Cédula del paciente" Required>
+      class="form-control" name="cedula" id="cedula" onkeyup="this.value=this.value.replace(/[^0-9]/, '');" size="11" maxlength="10" style="width:300px" aria-describedby="helpId" placeholder="Cédula del paciente" Required>
     <!--mensaje para validacion -->     
     <div class="invalid-feedback">Completar los datos.</div> 
     </div>    
@@ -151,8 +151,8 @@ function check_cedula( form ){
 
     <div class="mb-3" align="center">
       <label for="fecha" class="form-label">Fecha de nacimiento:</label>
-      <input type="text"
-      class="form-control" name="fecha" id="fecha" style="width:300px" aria-describedby="helpId" placeholder="Fecha de nacimiento del paciente" Required>  
+      <input type="date"
+      class="form-control" name="fecha" id="fecha" value="01-01-2020" min="1995-01-01" max="2020-01-01" style="width:300px" aria-describedby="helpId" placeholder="Fecha de nacimiento del paciente" Required>  
     <!--mensaje para validacion -->     
     <div class="invalid-feedback">Completar los datos.</div>   
     </div>
@@ -167,15 +167,15 @@ function check_cedula( form ){
     <div class="invalid-feedback">Completar los datos.</div> 
         </div>
 
-    <div class="form-group" align="center">
+    <!--<div class="form-group" align="center">
           <label for="estper">Estado de persona</label>
           <select name="estper" id="estper" class="custom-select"  style="width:300px" >
               <option value ="1">Activado</option>
               <option value ="2">Desactivado</option>                                                        
-          </select>
+          </select>-->
         <!--mensaje para validacion -->     
-    <div class="invalid-feedback">Completar los datos.</div> 
-        </div>
+    <!--<div class="invalid-feedback">Completar los datos.</div> 
+        </div>-->
     
 
     <div align="center" class="card-header">

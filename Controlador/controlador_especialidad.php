@@ -14,21 +14,33 @@ class ControladorEspecialidad{
 
     public function crear(){
         if($_POST){
-         print_r($_POST);
-         $nombre=$_POST['nombre'];
-         $descripcion=$_POST['descripcion'];
-      /*   $f_reg=$_POST['f_reg'];
-         $f_mod=$_POST['f_mod'];
-         $usu_r=$_POST['usu_r'];
-         $usu_m=$_POST['usu_m'];*/
-         $estado=$_POST['estado'];
-         Especialidad::crear($nombre,$descripcion,$estado);
-//         Especialidad::crear($nombre,$descripcion,$f_reg,$f_mod,$usu_r,$usu_m,$estado);
-         header("Location:./?controlador=especialidad&accion=inicio");
-     }
-         include_once("Vista/especialidad/crear.php");
-     }
+            //print_r($_POST);
+            $nombre=$_POST['nombre'];
+            $descripcion=$_POST['descripcion'];
+        /*   $f_reg=$_POST['f_reg'];
+            $f_mod=$_POST['f_mod'];
+            $usu_r=$_POST['usu_r'];
+            $usu_m=$_POST['usu_m'];*/
+            $estado=$_POST['estado'];
 
+
+            $existe_especialidad = Especialidad::validarEspecialidad($nombre);
+            if(count($existe_especialidad) > 0){
+                $mensaje  = "Ya existe una especialidad con este nombre";
+                include_once("Vista/especialidad/crear.php");
+                
+            }else{
+                Especialidad::crear($nombre,$descripcion,$estado);
+    //          Especialidad::crear($nombre,$descripcion,$f_reg,$f_mod,$usu_r,$usu_m,$estado);
+                header("Location:./?controlador=especialidad&accion=inicio");
+            }
+        }else{
+                $mensaje  = "";
+                include_once("Vista/especialidad/crear.php");
+               // include_once("Vista/usuarios/crear.php");
+        }
+       // }
+    }
      public function editar(){    
 
        

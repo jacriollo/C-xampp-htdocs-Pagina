@@ -9,9 +9,11 @@ class ControladorPacientes{
     public function inicio(){
 
         $pacientes=Pacientes::consultar();
-        include_once("./Vista/pacientes/Editar.php");
+        include_once("./Vista/pacientes/inicio.php");
 
     } 
+
+   
 
      public function editar(){           
         if($_POST){     
@@ -29,10 +31,11 @@ class ControladorPacientes{
             $estper=$_POST['estado'];
             $pas=$_POST['pas'];
             Pacientes::editar($id_per,$cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas);  
-            header("Location:./indexpaciente.php");        
+           // header("Location:./indexpaciente.php");  
+            header("Location: indexpaciente.php?controlador=pacientes&accion=inicio");      
             //header("Location:./?controlador=usuarios&accion=inicio");
         }
-        $id_per=$_GET['id_per'];
+        echo $id_per=$_GET['id_per'];
        //(print_r(Medicos::buscar($id_per));        
         $pacientes=(Pacientes::buscar($id_per));        
         include_once("./Vista/pacientes/Editar.php");        

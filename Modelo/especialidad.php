@@ -13,7 +13,7 @@ class Especialidad{
     public $id_usu_reg_esp;
     public $id_usu_mod_esp;
     public $est_esp;
-    
+        
     public function __construct($id_esp,$nom_esp,$des_esp,$fec_reg_esp,$fec_mod_esp,$id_usu_reg_esp,$id_usu_mod_esp,$est_esp){
         $this->id_esp=$id_esp;
         $this->nom_esp=$nom_esp;
@@ -23,6 +23,7 @@ class Especialidad{
         $this->ced_usu_reg_esp=$id_usu_reg_esp;
         $this->ced_usu_mod_esp=$id_usu_mod_esp;
         $this->est_esp=$est_esp;
+        
 
     }
 
@@ -42,19 +43,19 @@ class Especialidad{
 
         }
         return $listaespecialidad;
+    } 
+ 
+    public static function crear($nom_esp,$des_esp,$est_esp){  
+            // echo " idper". $_SESSION["id_per"];
+            // echo "idusu". $_SESSION["id_usu"];         
+             $fechaAct=  date("Y-m-d H:i:s");          
+             $conexionBD=BD::crearInstancia();       
+             $sql=$conexionBD->prepare("INSERT INTO especialidad(nom_esp, des_esp, fec_reg_esp, id_usu_reg_esp, est_esp) VALUES (?,?,?,?,?)");
+             $sql->execute(array($nom_esp,$des_esp,$fechaAct, $_SESSION['id_per'],$est_esp));
+           
+     
     }
 
-//    public static function crear($nom_esp,$des_esp,$fec_reg_esp,$fec_mod_esp,$id_usu_reg_esp,$id_usu_mod_esp,$est_esp){
-    public static function crear($nom_esp,$des_esp,$est_esp){
-       // echo " idper". $_SESSION["id_per"];
-       // echo "idusu". $_SESSION["id_usu"];
-        $conexionBD=BD::crearInstancia();       
-         $sql=$conexionBD->prepare("INSERT INTO especialidad(nom_esp, des_esp, id_usu_reg_esp, est_esp) VALUES (?,?,?,?)");
-        $sql->execute(array($nom_esp,$des_esp,$_SESSION["id_usu"],$est_esp));
-       /* $sql=$conexionBD->prepare("INSERT INTO especialidad(nom_esp, des_esp, fec_reg_esp, fec_mod_esp, id_usu_reg_esp, id_usu_mod_esp, est_esp) VALUES (?,?,?,?,?,?,?)");
-        $sql->execute(array($nom_esp,$des_esp,$fec_reg_esp,$fec_mod_esp,$id_usu_reg_esp,$id_usu_mod_esp,$est_esp));*/
-
-    }
 
     public static function borrar($id_esp){
         $conexionBD=BD::crearInstancia();
@@ -74,11 +75,22 @@ class Especialidad{
     public static function editar($id_esp,$nom_esp,$des_esp,$est_esp){
         $fechaAct=  date("Y-m-d H:i:s");
         $conexionBD=BD::crearInstancia();
-         $sql=$conexionBD->prepare("UPDATE especialidad SET nom_esp=?, des_esp=?, fec_mod_esp=?, id_usu_mod_esp=?, est_esp=? WHERE id_esp=?");
-        $sql->execute(array($nom_esp,$des_esp,$fechaAct,$_SESSION["id_usu"],$est_esp,$id_esp));
+        $sql=$conexionBD->prepare("UPDATE especialidad SET nom_esp=?, des_esp=?, fec_mod_esp=?, id_usu_mod_esp=?, est_esp=? WHERE id_esp=?");
+        $sql->execute(array($nom_esp,$des_esp,$fechaAct,$_SESSION["id_per"],$est_esp,$id_esp));
        /* $sql=$conexionBD->prepare("UPDATE especialidad SET nom_esp=?, des_esp=?, fec_reg_esp=?, fec_mod_esp=?, id_usu_reg_esp=?, id_usu_mod_esp=?, est_esp=? WHERE id_esp=?");
         $sql->execute(array($nom_esp,$des_esp,$fec_reg_esp,$fec_mod_esp,$id_usu_reg_esp,$id_usu_mod_esp,$est_esp,$id_esp));*/
         //header("Location:./?controlador=medicos&accion=editar");
     }
 
+    public static function validarEspecialidad($nombre){
+        $conexionBD=BD::crearInstancia();
+        $consultapersona=$conexionBD->query(" SELECT * FROM especialidad WHERE nom_esp='$nombre'"); 
+        $datos = $consultapersona->fetchAll();
+        return $datos; 
+    }
+
 }
+
+
+?>
+

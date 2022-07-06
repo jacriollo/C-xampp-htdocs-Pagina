@@ -13,9 +13,9 @@ class ControladorRegistrarE{
 
     public function crear(){
         if($_POST){
-            $medico=$_POST['medico'];
-            $especialidad=$_POST['especialidad']; 
-            $estado=$_POST['estado'];
+           $medico=$_POST['medico'];
+           $especialidad=$_POST['especialidad']; 
+           $estado=$_POST['estado'];
             Registrar::crear($medico,$especialidad,$estado);
             header("Location:./?controlador=registrarE&accion=inicio");
         }
@@ -24,7 +24,7 @@ class ControladorRegistrarE{
         include_once("Vista/registrarE/crear.php");
      }
 
-    public function editar(){           
+    /*public function editar(){           
         if($_POST){                 
             $medico=$_POST['medico'];
             $especialidad=$_POST['especialidad']; 
@@ -37,6 +37,33 @@ class ControladorRegistrarE{
         $id_usu=$_GET['id_usu'];     
         $id_esp=$_GET['id_esp']; 
         $especialidad=(Registrar::buscar($id_usu, $id_esp));       
+        $listaMedicos=Registrar::consultarUsuarioRol(2);          
+        $listaEspecialidad=Registrar::consultarEspecialidad(1);   
+        include_once("./Vista/registrarE/editar.php");        
+    }*/
+
+    public function editar(){           
+        if($_POST){                 
+           // $medico=$_POST['medico'];
+           // $especialidad=$_POST['especialidad'];  
+            print_r($_POST);   
+            $id_esp=$_POST['especialidad'];         
+            $id_usu= $_POST['medico'];           
+            $estado=$_POST['estado'];
+           
+           //echo $id_esp=$_POST['id_esp'];         
+           //echo $id_usu= $_POST['id_usu'];           
+           //echo $estado=$_POST['estado'];
+
+
+
+            Registrar::editar($id_usu, $id_esp,$estado);        
+            header("Location:./?controlador=registrarE&accion=inicio");
+        }
+        $id_usu=$_GET['id_usu'];     
+        $id_esp=$_GET['id_esp']; 
+       // $especialidad=(Registrar::buscar($id_usu)); 
+        $especialidad=(Registrar::buscar($id_usu, $id_esp));      
         $listaMedicos=Registrar::consultarUsuarioRol(2);          
         $listaEspecialidad=Registrar::consultarEspecialidad(1);   
         include_once("./Vista/registrarE/editar.php");        

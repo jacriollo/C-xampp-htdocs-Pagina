@@ -1,4 +1,6 @@
 
+
+
 <?php
 
 include("./controlador/conexion.php");
@@ -34,11 +36,10 @@ class Pacientes{
         $this->pas_per=$pas_per;
     }
 
-    public static function consultar(){   
-        $per= $_SESSION['id_per'];   
+    public static function consultar(){        
         $listapacientes=[];
         $conexionBD=BD::crearInstancia();
-        $sql=$conexionBD->query("SELECT * FROM persona WHERE id_per=$per");        
+        $sql=$conexionBD->query("SELECT * FROM persona");        
         foreach($sql->fetchAll() as $pacientes) {
             $listapacientes[]= new Pacientes ($pacientes['id_per'],$pacientes['ced_per'],$pacientes['ape_per'],$pacientes['nom_per'],$pacientes['correo_per'],$pacientes['tel_per'],$pacientes['dir_per'],$pacientes['ciu_rec_per'],$pacientes['fec_nac_per'],$pacientes['gen_per'],$pacientes['tip_usu'],$pacientes['est_per'],$pacientes['pas_per']); 
 
@@ -47,7 +48,7 @@ class Pacientes{
     }
 
     public static function buscar($id_per){
-       //echo $id_per;
+        $id_per;
         $conexionBD=BD::crearInstancia();
         $sql=$conexionBD->prepare(" SELECT * FROM persona WHERE id_per=? ");
         $sql->execute(array($id_per));
@@ -56,7 +57,7 @@ class Pacientes{
     }
 
     public static function editar($id_per, $cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas){
-       // echo  $pas;
+        echo  $pas;
         $conexionBD=BD::crearInstancia();
         $sql=$conexionBD->prepare("UPDATE persona SET ced_per=?, ape_per=?, nom_per=?, correo_per=?, tel_per=?, dir_per=?, ciu_rec_per=?, fec_nac_per=?, gen_per=?, tip_usu=?, est_per=?, pas_per=? WHERE id_per=? ");
         $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas,$id_per));

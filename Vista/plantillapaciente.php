@@ -25,18 +25,22 @@
                 <h1 class="display-6">Bienvenido:    <?php session_start();// echo $_SESSION['nom_per'];?><?php// echo "     ";?><?php // echo $_SESSION['ape_per'];?></h1>               
             </div>
         </nav>-->
-        <nav class="navbar navbar-expand navbar-light bg-light">
+        <nav class="navbar navbar-expand navbar-light bg-info"> <!--  class="navbar navbar-expand navbar-light bg-light" -->
             <div class="nav navbar-nav">
-            <a class="nav-item nav-link active" href="#">AREA PACIENTES<span class="visually-hidden">(current)</span></a>
+            <h5><a  class="text-white"  class="nav-item nav-link active" href="#">ÁREA PACIENTES:<span class="visually-hidden">(current)</span></a></h5>
                 <!--<a class="nav-item nav-link active" href="#">AREA DEL PACIENTE  <span class="visually-hidden">(current)</span></a> 
                 <div> <?php // echo $_SESSION['id_per']?></div>-->
-                <a class="nav-item nav-link" href="Vista/inicio.php">Salir</a> 
-                <a class="nav-item nav-link" href="?controlador=pacientes&accion=editar&id_per=<?php echo $_SESSION['id_per']?> ">Editar</a>               
-                <a class="nav-item nav-link" href="?controlador=citasP&accion=inicioP">Citas/Médicas</a>                            
+                <?php //  echo $_SESSION['id_per']?>
                 <a class="nav-item nav-link" href=""></a>
+                <!--<a class="nav-item nav-link" href="?controlador=pacientes&accion=editar&id_per=<?php// echo $_SESSION['id_per']?> ">Editar</a> -->                
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=pacientes&accion=inicio&id_per=<?php  echo $_SESSION['id_per']?> ">Editar</a></h5>           
+                <a class="nav-item nav-link" href=""></a>
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=citasP&accion=inicioP">Citas/Médicas</a></h5>                            
+               <!-- <a class="nav-item nav-link" href="?controlador=calificacion&accion=calificacion.php">Calificacion</a>-->
                 <a class="nav-item nav-link" href=""></a> 
                 <!--<a class="nav-item nav-link" href="?controlador=especialidad&accion=crear">Registrar/Especialidad</a>--> 
                 <a class="nav-item nav-link" href=""></a>
+                <h5><a class="text-white" class="nav-item nav-link" href="Vista/inicio.php">Salir</a></h5>  
             </div>
         </nav>
         <div class="container">

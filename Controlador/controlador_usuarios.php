@@ -14,7 +14,7 @@ class ControladorUsuarios{
 
     public function crear(){
         if($_POST){
-         print_r($_POST);
+         //print_r($_POST);
          $cedula=$_POST['cedula'];
          $apellido=$_POST['apellido'];
          $nombre=$_POST['nombre'];
@@ -27,11 +27,46 @@ class ControladorUsuarios{
          $tipusu=$_POST['rol'];
          $estper=$_POST['estado'];
          $pas=$_POST['cedula'];
-         Usuarios::crear($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas);
-         header("Location:./?controlador=usuarios&accion=inicio");
-     }
-         include_once("Vista/usuarios/crear.php");
-     }
+
+         
+         $existe_usuario = Usuarios::validarUsuario($cedula);
+         if(count($existe_usuario) > 0){
+            $mensaje  = "Ya existe un usuario con este número de cédula";
+            include_once("Vista/usuarios/crear.php");      
+         }else{
+            Usuarios::crear($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas); 
+            header("Location:./?controlador=usuarios&accion=inicio");
+         }      
+       
+
+        }else{
+            $mensaje  = "";
+            include_once("Vista/usuarios/crear.php");
+        }     
+         
+      
+
+
+
+
+
+      /* $existe_usuario = Usuarios::validarUsuario($cedula);
+       if(count($existe_usuario) > 0){
+          $mensaje  = "Ya existe un usuario con este número de cédula";
+          include_once("Vista/usuarios/crear.php");      
+       }else{
+          Usuarios::crear($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas); 
+          header("Location:./?controlador=usuarios&accion=inicio");
+       }  
+      }else{
+          $mensaje  = "";
+          include_once("Vista/usuarios/crear.php");
+      }*/
+
+
+
+        
+    }
 
      public function editar(){           
         if($_POST){     

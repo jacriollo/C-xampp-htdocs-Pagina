@@ -46,9 +46,11 @@ class Usuarios{
     }
 
     public static function crear($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas_per){
+        $md5pass= md5($pas_per);
         $conexionBD=BD::crearInstancia();
+        
         $sql=$conexionBD->prepare("INSERT INTO persona(ced_per, ape_per, nom_per, correo_per, tel_per, dir_per, ciu_rec_per, fec_nac_per, gen_per, tip_usu, est_per, pas_per) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-        $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas_per));
+        $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$md5pass));
         $id = $conexionBD->lastInsertId();
         if($id > 0){
             
@@ -57,9 +59,10 @@ class Usuarios{
     }
 
     public static function crearusuarios($id_per, $cedula, $pas_per, $tipusu, $estper) {
+        $md5pass= md5($pas_per);
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("INSERT INTO usuario(id_per, nom_usu, pas_usu, tip_usu, est_usu) VALUES (?,?,?,?,?)");
-        $sql->execute(array($id_per, $cedula, $pas_per, $tipusu, $estper));
+        $sql->execute(array($id_per, $cedula, $md5pass, $tipusu, $estper));
     }
 
     public static function borrar($id_per){
@@ -79,9 +82,10 @@ class Usuarios{
 
     public static function editar($id_per, $cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas){
        // echo  $genero;
+       $md5pass= md5($pas);
         $conexionBD=BD::crearInstancia();
         $sql=$conexionBD->prepare("UPDATE persona SET ced_per=?, ape_per=?, nom_per=?, correo_per=?, tel_per=?, dir_per=?, ciu_rec_per=?, fec_nac_per=?, gen_per=?, tip_usu=?, est_per=?, pas_per=? WHERE id_per=? ");
-        $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$pas,$id_per));
+        $sql->execute(array($cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha_nacimiento,$genero,$tipusu,$estper,$md5pass,$id_per));
        //echo $id = $conexionBD->lastInsertId();
        // if($id > 0){            
             Usuarios::modificarusuarios($id_per, $cedula, $pas, $tipusu, $estper);
@@ -89,10 +93,17 @@ class Usuarios{
         
     }
     public static function modificarusuarios($id_per, $cedula, $pas_per, $tipusu, $estper) {
+        $md5pass= md5($pas_per);
         $conexionBD = BD::crearInstancia();
         $sql = $conexionBD->prepare("UPDATE usuario SET nom_usu=?, pas_usu=?, tip_usu=?, est_usu=? WHERE id_per=? ");
-        $sql->execute(array($cedula, $pas_per, $tipusu, $estper,$id_per));
+        $sql->execute(array($cedula, $md5pass, $tipusu, $estper,$id_per));
     }
+    public static function validarUsuario($cedula){
+        $conexionBD=BD::crearInstancia();
+        $consultapersona=$conexionBD->query("SELECT * FROM persona  WHERE ced_per='$cedula'"); 
+        $datos = $consultapersona->fetchAll();
+        return $datos; 
+    }  
 
 }
 ?>

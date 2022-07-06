@@ -28,7 +28,8 @@ class ControladorCitasP{
         Citas::crearP($grupo,$nombre,$descripcion,$cantidad,$presentacion,$estado);
        // Medicos::crearusuarios();
        // header("Location:./?controlador=CitasP&accion=inicioP");
-        header("Location:?controlador=CitasP&accion=inicioP");
+        header("Location:?controlador=.&accion=inicioP");
+        die();
     }
         $listaEspecialidad=Citas::consultarEspecialidad(1);   
         $listaPacientes=Citas::consultarPacientes(4);
@@ -78,7 +79,7 @@ class ControladorCitasP{
             $estado=$_POST['estado'];
             
             Citas::editar($id,$grupo,$nombre,$descripcion,$cantidad,$presentacion,$estado);          
-            header("Location:./?controlador=CitasP&accion=inicioP");
+            header("Location:/?controlador=CitasP&accion=inicioP");
         }
         $id_cat=$_GET['id_cat'];
        //(print_r(Medicos::buscar($id_per));        

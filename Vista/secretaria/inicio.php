@@ -16,8 +16,8 @@
         <th>Fecha de Nacimiento</th>
         <th>Género</th>
         <th>Rol de usuario</th>
-        <th>Estado</th>  <!-- -->
-        <th>Contraseña</th>
+        <th>Estado</th>  
+        <!--<th>Contraseña</th>-->
         <th>Acciones</th>
     </tr>        
 </thead>    
@@ -54,7 +54,7 @@
             ?></td>  <!-- -->
         
 
-        <td><?php echo $secre->pas_per; ?></td>
+        <!--<td><?php// echo $secre->pas_per; ?></td>-->
         <td>
         <div class="btn-group" role="group" aria-label="">
             <a href="?controlador=secretaria&accion=crear&id_per=<?php echo $secre->id_per; ?>" class="btn btn-success">Crear</a>

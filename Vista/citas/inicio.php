@@ -1,71 +1,46 @@
 
- 
-<table class="table table-bordered"> 
-    <thead>
-    <tr><h1 align="center" class="display-6">Citas Médicas</h1></tr>
-    <tr><td colspan="8"> <a href="?controlador=citas&accion=crear&idEsp=0&idMed=0&fec=" class="btn btn-success">Crear</a> </td></tr>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>            
-            <th>Paciente</th>
-            <th>Estado</th>
-            <th>Observación</th>
-            <th>Diagnóstico</th>           
-            <th>Receta</th>           
-            <th>Acciones</th>     
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach($catalogos as $catalogo){?>
-        <tr>            
-            
-            <td>
-              <?php 
-            /*  if($catalogo->gru_cat==1){
-                        echo "Analgesia";
-                      }
-                      if($catalogo->gru_cat==2){
-                        echo "Anestesia";
-                      } 
-                      if($catalogo->gru_cat==3){
-                        echo "Cardiología";
-                      } 
-                      if($catalogo->gru_cat==4){
-                        echo "Dermatología";
-                      } 
-                      if($catalogo->gru_cat==5){
-                        echo "Endocrinología";
-                      } 
-                      if($catalogo->gru_cat==6){
-                        echo "Enfermedades/infecciosas";
-                      } 
-                      if($catalogo->gru_cat==7){
-                        echo "Enfermedades/inmunoalérgicas";
-                      } 
-                       */                                               
-                      ?>
-                      </td>
 
-
-            <td><?php echo $catalogo->nom_cat; ?></td>
-            <td><?php echo $catalogo->des_cat; ?></td>
-            <td><?php echo $catalogo->can_cat; ?></td>
-            <td><?php echo $catalogo->pre_cat; ?></td>
-            <td><?php if($catalogo->est_cat==1){
-                        echo "Activado";
-                      }
-                      if($catalogo->est_cat==2){
-                        echo "Desactivado";
-                      }
-                      ?></td>           
-            
-            <td>
-            <div class="btn-group" role="group" aria-label="">                
-                <a href="?controlador=citas&accion=editar&id_cat=<?php echo $catalogo->id_cat; ?>" class="btn btn-info">Editar</a>
-                <a href="?controlador=citas&accion=borrar&id_cat=<?php echo $catalogo->id_cat; ?>" class="btn btn-danger">Borrar</a>                
-            </div>    
-           </td>
-        </tr>           
-        <?php }?>
-    </tbody>
-</table>
+<form class="row g-3">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">State</label>
+    <select id="inputState" class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>

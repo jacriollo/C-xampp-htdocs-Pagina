@@ -31,7 +31,7 @@ class Citas{
         $this->med=$med;
         $this->esp=$esp;
     }
-
+  
     public static function consultar(){             
         //$listaespecialidad=[];
         $listacita=[];

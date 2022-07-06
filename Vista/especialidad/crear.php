@@ -1,9 +1,10 @@
+<tr><h1>    </h1></tr>
 
-
-<div class="card">
-    <div align="center" class="card-header">
+<div style="width:600px" class="card">
+    <div align="center" class="bg-info">
         AGREGAR ESPECIALIDAD
     </div>
+    <?php echo $mensaje?>
     <div class="card-body">
         <form class="row g-3 needs-validation" novalidate action="" method="post">
 

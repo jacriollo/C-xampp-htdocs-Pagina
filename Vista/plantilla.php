@@ -15,24 +15,37 @@
   <body>
 
    <!--hola mundo-->
-    
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <div class="nav navbar-nav">
-                <a class="nav-item nav-link active" href="#">AREA DEL ADMINISTRADOR<span class="visually-hidden">(current)</span></a>
-                <!--<h1 class="display-4">Hospital Básico de la Zona El Oro</h1>-->
-                <a class="nav-item nav-link" href="Vista/inicio.php">Salir</a>
-                <!--<a class="nav-item nav-link" href=""></a>-->
-                <a class="nav-item nav-link" href="?controlador=usuarios&accion=inicio">Usuarios</a>
+ 
+  
+
+
+        <nav class="navbar navbar-expand navbar-light bg-info"><!-- class="navbar navbar-expand navbar-light bg-light"  -->
+            <div  class="nav navbar-nav">   <!--class="nav navbar-nav"-->
+            <h5><a class="text-white"  class="nav-item nav-link active" href="#" >AREA DEL ADMINISTRADOR:<span class="visually-hidden">(current)</span></a></h5>               
+            <a class="nav-item nav-link" href=""></a> 
+                <?php //session_start();// echo $_SESSION['nom_per'];?>
+                <?php// echo $_SESSION["id_per"]?> 
+                
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=usuarios&accion=inicio">Usuarios</a></h5>
                 <!--<a class="nav-item nav-link" href="?controlador=medicos&accion=crear">Registrar/Medicos</a>                
                 <a class="nav-item nav-link" href="?controlador=medicos&accion=inicio">Médicos</a>-->
-                <a class="nav-item nav-link" href="?controlador=especialidad&accion=inicio">Especialidad</a> 
-                <!--<a class="nav-item nav-link" href="?controlador=especialidad&accion=crear">Registrar/Especialidad</a>--> 
-                <a class="nav-item nav-link" href="?controlador=registrarE&accion=inicio">Registrar/Medico/Especialidad</a>
-                <a class="nav-item nav-link" href="?controlador=horarios&accion=inicio">Horarios</a>
-                <a class="nav-item nav-link" href="?controlador=catalogoM&accion=inicio">Catalogo/Medicinas</a>
-                <a class="nav-item nav-link" href="?controlador=citas&accion=inicio">Citas</a>
+                <a  class="nav-item nav-link" href=""></a> 
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=especialidad&accion=inicio"> Especialidad</a></h5>   
+                <a  class="nav-item nav-link" href=""></a>                     
+                <!--<a class="nav-item nav-link" href="?controlador=especialidad&accion=crear">Registrar/Especialidad</a> &id_per=<?php // echo $_SESSION['id_per']?> --> 
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=registrarE&accion=inicio">Registrar/Medico/Especialidad</a></h5>
+                <a  class="nav-item nav-link" href=""></a> 
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=horarios&accion=inicio">Horarios</a></h5>
+                <a  class="nav-item nav-link" href=""></a> 
+                <!--<a class="nav-item nav-link" href="?controlador=catalogoM&accion=inicio">Catalogo/Medicinas</a>--> 
+                <h5><a class="text-white" class="nav-item nav-link" href="?controlador=citas&accion=inicio">Citas</a></h5>
+                <a  class="nav-item nav-link" href=""></a> 
+                <h5><a class="text-white" class="nav-item nav-link" href="Vista/inicio.php">Salir</a></h5>
 
             </div>
+
+
+
         </nav>
         <div class="container">
           <div class="row">        
@@ -40,8 +53,9 @@
               <div class="col-xs|sm|md|lg|xl-1-12">
                   
                   <?php
-                     session_start();
+                     session_start();                     
                      include_once("ruteador.php");
+                     // $_SESSION["id_per"]
                   ?>
     
               </div>
@@ -49,6 +63,10 @@
           </div>
       </div>
 
+                <!-- <?php
+                   //  session_destroy();                   
+                ?>-->
+    
      
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

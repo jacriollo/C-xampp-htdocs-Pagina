@@ -1,6 +1,6 @@
-
-<div class="card">
-    <div align="center" class="card-header">
+<tr><h1>    </h1></tr>
+<div style="width:600px" class="card">
+    <div align="center" class="bg-info" >
         MODIFICAR ESPECIALIDAD DE MÉDICOS
     </div>
     <div class="card-body">

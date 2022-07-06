@@ -1,9 +1,11 @@
+
+
 <?php
-include_once("Modelo/medicos.php");
+include_once("Modelo/calificacion.php");
 include_once("conexion.php");
 BD::crearInstancia();
 
-class ControladorMedicos{
+class ControladorCalificacion{
     //Metododos
     public function inicio(){
 
@@ -46,11 +48,11 @@ class ControladorMedicos{
             $ciudad=$_POST['ciudad'];
             $fecha=$_POST['fecha'];
             $genero=$_POST['genero'];
-            $tipusu=$_POST['rol'];
-            $estper=$_POST['estado'];
+            $tipusu=$_POST['tipusu'];
+            $estper=$_POST['estper'];
             $pas=$_POST['pas'];
             Medicos::editar($id_per,$cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas);          
-            header("Location: indexmedico.php?controlador=medicos&accion=inicio");
+            header("Location:./?controlador=medicos&accion=inicio");
         }
         $id_per=$_GET['id_per'];
        //(print_r(Medicos::buscar($id_per));        
@@ -61,7 +63,7 @@ class ControladorMedicos{
         
         //$ced_per=$_GET['ced_per'];
     
-        include_once("./Vista/medicos/editar1.php");
+        include_once("./Vista/medicos/editar.php");
 
         
     }

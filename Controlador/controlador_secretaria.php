@@ -51,7 +51,7 @@ class ControladorSecretaria{
             $estper=$_POST['estado'];
             $pas=$_POST['cedula'];
             Secretaria::editar($id_per,$cedula,$apellido,$nombre,$correo,$telefono,$direccion,$ciudad,$fecha,$genero,$tipusu,$estper,$pas);          
-            header("Location: indexsecretaria.php?controlador=secretaria&accion=inicio");
+            header("Location: indexsecretaria.php");
            // http://localhost/Pagina//indexsecretaria.php?controlador=secretaria&accion=inicio
             //header("Location:./?controlador=secretaria&accion=inicio");
             

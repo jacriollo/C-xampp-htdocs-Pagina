@@ -15,17 +15,24 @@ class ControladorHorarios{
     public function crear(){
         if($_POST){
          print_r($_POST);
-         $h1=$_POST['h1'];
-         $h2=$_POST['h2'];
-         $h3=$_POST['h3'];
-         $h4=$_POST['h4'];
-         $h5=$_POST['h5'];
-         $h6=$_POST['h6'];
+         $fecha=$_POST['fecha'];
+         echo $horaI=$_POST['horaI'];
+        echo $horaF=$_POST['horaF'];
+        echo $intervalo=$_POST['intervalo'];
+
+        // echo $horario('H:s:i', strtotime('08:30:00 + 8 hours + 30 minutes'));
+         echo $horario=$horaI+$intervalo;
+
+       // $hi = strtotime('02:30');
+       // $hf = strtotime('02:00')-strtotime('midnight');
+       // echo date('H:i',$hi+$hf);
+
+         $estado=$_POST['estado'];
         
-         Horario::crear($h1,$h2,$h3,$h4,$h5,$h6);
+         Horario::crear($fecha,$horaI,$horaF,$intervalo,$estado);
          header("Location:./?controlador=horarios&accion=inicio");
      }
-         include_once("Vista/horarios/crear.php");
+         include_once("Vista/horarios/crear1.php");
      }
 
      public function editar(){           
